@@ -48,6 +48,9 @@ public class CacheConfiguration {
             createCache(cm, com.robot.tenten.domain.User.class.getName());
             createCache(cm, com.robot.tenten.domain.Authority.class.getName());
             createCache(cm, com.robot.tenten.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.robot.tenten.domain.Survivor.class.getName());
+            createCache(cm, com.robot.tenten.domain.Survivor.class.getName() + ".resources");
+            createCache(cm, com.robot.tenten.domain.Resource.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

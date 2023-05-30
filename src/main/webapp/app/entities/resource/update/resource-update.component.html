@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-resource-heading" data-cy="ResourceCreateUpdateHeading" jhiTranslate="tenTenApocLawApp.resource.home.createOrEditLabel">
+        Create or edit a Resource
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="tenTenApocLawApp.resource.resourceType"
+            for="field_resourceType"
+            [ngbTooltip]="'tenTenApocLawApp.resource.help.resourceType' | translate"
+            >Resource Type</label
+          >
+          <select class="form-control" name="resourceType" formControlName="resourceType" id="field_resourceType" data-cy="resourceType">
+            <option [ngValue]="null">{{ 'tenTenApocLawApp.ResourceType.null' | translate }}</option>
+            <option *ngFor="let resourceType of resourceTypeValues" [value]="resourceType">
+              {{ 'tenTenApocLawApp.ResourceType.' + resourceType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="tenTenApocLawApp.resource.quantity" for="field_quantity">Quantity</label>
+          <input type="text" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="tenTenApocLawApp.resource.survivor" for="field_survivor">Survivor</label>
+          <select
+            class="form-control"
+            id="field_survivor"
+            data-cy="survivor"
+            name="survivor"
+            formControlName="survivor"
+            [compareWith]="compareSurvivor"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="survivorOption" *ngFor="let survivorOption of survivorsSharedCollection">{{ survivorOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

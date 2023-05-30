@@ -1,0 +1,106 @@
+<div>
+  <h2 id="page-heading" data-cy="ResourceHeading">
+    <span jhiTranslate="tenTenApocLawApp.resource.home.title">Resources</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tenTenApocLawApp.resource.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-resource"
+        [routerLink]="['/resource/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tenTenApocLawApp.resource.home.createLabel"> Create a new Resource </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="resources?.length === 0">
+    <span jhiTranslate="tenTenApocLawApp.resource.home.notFound">No Resources found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="resources && resources.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="resourceType">
+            <div class="d-flex">
+              <span jhiTranslate="tenTenApocLawApp.resource.resourceType">Resource Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="quantity">
+            <div class="d-flex">
+              <span jhiTranslate="tenTenApocLawApp.resource.quantity">Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="survivor.id">
+            <div class="d-flex">
+              <span jhiTranslate="tenTenApocLawApp.resource.survivor">Survivor</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of resources; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/resource', resource.id, 'view']">{{ resource.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'tenTenApocLawApp.ResourceType.' + resource.resourceType }}">{{ resource.resourceType }}</td>
+          <td>{{ resource.quantity }}</td>
+          <td>
+            <div *ngIf="resource.survivor">
+              <a [routerLink]="['/survivor', resource.survivor.id, 'view']">{{ resource.survivor.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/resource', resource.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/resource', resource.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(resource)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20230530083733",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "survivor",
+  "fields": [
+    {
+      "fieldName": "survivorId",
+      "fieldType": "String",
+      "javadoc": "The survivorId attribute."
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "Male,Female,Unknown"
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "InfectionStatus",
+      "fieldValues": "Normal,Infected,Contaminated"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Survivor",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resource",
+      "otherEntityRelationshipName": "survivor",
+      "relationshipName": "resource",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

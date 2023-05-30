@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="survivor">
+      <h2 data-cy="survivorDetailsHeading"><span jhiTranslate="tenTenApocLawApp.survivor.detail.title">Survivor</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ survivor.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="tenTenApocLawApp.survivor.survivorId" [ngbTooltip]="'tenTenApocLawApp.survivor.help.survivorId' | translate"
+            >Survivor Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ survivor.survivorId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.survivor.name">Name</span></dt>
+        <dd>
+          <span>{{ survivor.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.survivor.age">Age</span></dt>
+        <dd>
+          <span>{{ survivor.age }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.survivor.gender">Gender</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tenTenApocLawApp.Gender.' + survivor.gender }}">{{ survivor.gender }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.survivor.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ survivor.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.survivor.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ survivor.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.survivor.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tenTenApocLawApp.InfectionStatus.' + survivor.status }}">{{ survivor.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/survivor', survivor.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
