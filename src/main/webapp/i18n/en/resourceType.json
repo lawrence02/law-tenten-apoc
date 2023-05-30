@@ -1,0 +1,11 @@
+{
+  "tenTenApocLawApp": {
+    "ResourceType": {
+      "null": "",
+      "Water": "Water",
+      "Food": "Food",
+      "Medication": "Medication",
+      "Ammunition": "Ammunition"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="resource">
+      <h2 data-cy="resourceDetailsHeading"><span jhiTranslate="tenTenApocLawApp.resource.detail.title">Resource</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ resource.id }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="tenTenApocLawApp.resource.resourceType"
+            [ngbTooltip]="'tenTenApocLawApp.resource.help.resourceType' | translate"
+            >Resource Type</span
+          >
+        </dt>
+        <dd>
+          <span jhiTranslate="{{ 'tenTenApocLawApp.ResourceType.' + resource.resourceType }}">{{ resource.resourceType }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.resource.quantity">Quantity</span></dt>
+        <dd>
+          <span>{{ resource.quantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenTenApocLawApp.resource.survivor">Survivor</span></dt>
+        <dd>
+          <div *ngIf="resource.survivor">
+            <a [routerLink]="['/survivor', resource.survivor.id, 'view']">{{ resource.survivor.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/resource', resource.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20230530083734",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "resource",
+  "fields": [
+    {
+      "fieldName": "resourceType",
+      "fieldType": "ResourceType",
+      "fieldValues": "Water,Food,Medication,Ammunition",
+      "javadoc": "The survivorId attribute."
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Resource",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "survivor",
+      "otherEntityRelationshipName": "resource",
+      "relationshipName": "survivor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
